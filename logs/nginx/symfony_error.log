@@ -1,0 +1,33 @@
+2020/02/26 12:57:19 [error] 6#6: *18 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/projeto/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied in /var/www/projeto/bootstrap/cache/compiled.php:13906
+Stack trace:
+#0 /var/www/projeto/bootstrap/cache/compiled.php(13836): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/projeto/bootstrap/cache/compiled.php(13596): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#2 /var/www/projeto/bootstrap/cache/compiled.php(13694): Monolog\Logger->addRecord(400, Object(UnexpectedValueException), Array)
+#3 /var/www/projeto/bootstrap/cache/compiled.php(13389): Monolog\Logger->error(Object(UnexpectedValueException), Array)
+#4 /var/www/projeto/bootstrap/cache/compiled.php(13360): Illuminate\Log\Writer->writeLog('error', Object(UnexpectedValueException), Array)
+#5 /var/www/projeto/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(57): Illuminate\Log\Writer->error(Object(UnexpectedValue...PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/projeto/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied in /var/www/projeto/bootstrap/cache/compiled.php:13906
+Stack trace:
+#0 /var/www/projeto/bootstrap/cache/compiled.php(13836): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/projeto/bootstrap/cache/compiled.php(13596): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#2 /var/www/projeto/bootstrap/cache/compiled.php(13694): Monolog\Logger->addRecord(400, Object(Symfony\Component\Debug\Exception\FatalErrorException), Array)
+#3 /var/www/projeto/bootstrap/cache/compiled.php(13389): Monolog\Logger->error(Object(Symfony\Component\Debug\Exception\FatalErrorException), Array)
+#4 /var/www/projeto/bootstrap/cache/compiled.php(13360): Illuminate\Log\Writer->writeLog('error', Object(Symfony\Component\Debug\Exception\FatalErrorException), Array)
+#5 /var/www/projeto/v
+2020/02/26 18:46:30 [crit] 6#6: *16 open() "/var/tmp/nginx/fastcgi/1/00/0000000001" failed (13: Permission denied) while reading upstream, client: 172.22.0.1, server: pedidos.test, request: "GET /_debugbar/assets/stylesheets?v=1582742737 HTTP/1.1", upstream: "fastcgi://172.22.0.3:9001", host: "pedidos.test", referrer: "http://pedidos.test/login"
+2020/02/26 18:46:30 [crit] 6#6: *17 open() "/var/tmp/nginx/fastcgi/2/00/0000000002" failed (13: Permission denied) while reading upstream, client: 172.22.0.1, server: pedidos.test, request: "GET /_debugbar/assets/javascript?v=1582742737 HTTP/1.1", upstream: "fastcgi://172.22.0.3:9001", host: "pedidos.test", referrer: "http://pedidos.test/login"
+2020/02/26 19:15:55 [error] 6#6: *61 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.22.0.1, server: pedidos.test, request: "POST /pedidos HTTP/1.1", upstream: "fastcgi://172.22.0.3:9001", host: "pedidos.test", referrer: "http://pedidos.test/pedidos/create"
+2020/02/26 19:20:10 [error] 6#6: *73 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.22.0.1, server: pedidos.test, request: "POST /pedidos HTTP/1.1", upstream: "fastcgi://172.22.0.3:9001", host: "pedidos.test", referrer: "http://pedidos.test/pedidos/create"
+2020/02/26 21:01:25 [crit] 9#9: *414 open() "/var/tmp/nginx/fastcgi/1/00/0000000001" failed (13: Permission denied) while reading upstream, client: 172.22.0.1, server: pedidos.test, request: "GET /_debugbar/assets/javascript?v=1582742737 HTTP/1.1", upstream: "fastcgi://172.22.0.3:9001", host: "pedidos.test", referrer: "http://pedidos.test/pedidos/create"
+2020/02/27 01:34:35 [error] 7#7: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught ErrorException: file_put_contents(/var/www/projeto/storage/framework/views/c7c87ff5709a3dc8c4a8f0a0a57e49bcd77e115f.php): failed to open stream: Permission denied in /var/www/projeto/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:133
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/var/www/projet...', 133, Array)
+#1 /var/www/projeto/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(133): file_put_contents('/var/www/projet...', '<?php $__env->s...', 0)
+#2 /var/www/projeto/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(129): Illuminate\Filesystem\Filesystem->put('/var/www/projet...', '<?php $__env->s...')
+#3 /var/www/projeto/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(51): Illuminate\View\Compilers\BladeCompiler->compile('/var/www/projet...')
+#4 /var/www/projeto/vendor/facade/ignition/src/Views/En...PHP message: PHP Fatal error:  Uncaught ErrorException: file_put_contents(/var/www/projeto/storage/framework/views/c7c87ff5709a3dc8c4a8f0a0a57e49bcd77e115f.php): failed to open stream: Permission denied in /var/www/projeto/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:133
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/var/www/projet...', 133, Array)
+#1 /var/www/projeto/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(133): file_put_contents('/var/www/projet...', '<?php $__env->s...', 0)
+#2 /var/www/projeto/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(129): Illuminate\Filesystem\Filesystem->put('/var/www/projet...', '<?php $__env->s...')
+#3 /var/www/projeto/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(51): Illuminate\View\Compilers\BladeCompiler->compile('/var/www/projet...')
+#4 /var/www/pr

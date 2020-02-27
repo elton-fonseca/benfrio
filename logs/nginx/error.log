@@ -1,0 +1,2 @@
+2020/02/26 21:50:05 [emerg] 1#1: host not found in upstream "php-opergel-pedidos:9001" in /etc/nginx/conf.d/upstream.conf:1
+2020/02/26 21:51:00 [emerg] 1#1: host not found in upstream "php-opergel-pedidos:9001" in /etc/nginx/conf.d/upstream.conf:1
