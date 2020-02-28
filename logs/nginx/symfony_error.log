@@ -31,3 +31,6 @@ Stack trace:
 #2 /var/www/projeto/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(129): Illuminate\Filesystem\Filesystem->put('/var/www/projet...', '<?php $__env->s...')
 #3 /var/www/projeto/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(51): Illuminate\View\Compilers\BladeCompiler->compile('/var/www/projet...')
 #4 /var/www/pr
+2020/02/28 18:37:18 [crit] 6#6: *4 open() "/var/tmp/nginx/fastcgi/1/00/0000000001" failed (13: Permission denied) while reading upstream, client: 172.28.0.1, server: benfrio.test, request: "GET /login HTTP/1.1", upstream: "fastcgi://172.28.0.2:9001", host: "benfrio.test"
+2020/02/28 19:08:31 [crit] 6#6: *42 open() "/var/tmp/nginx/fastcgi/2/00/0000000002" failed (13: Permission denied) while reading upstream, client: 172.28.0.1, server: benfrio.test, request: "GET /estoque HTTP/1.1", upstream: "fastcgi://172.28.0.2:9001", host: "benfrio.test", referrer: "http://benfrio.test/login"
+2020/02/28 19:50:47 [crit] 6#6: *185 open() "/var/tmp/nginx/fastcgi/3/00/0000000003" failed (13: Permission denied) while reading upstream, client: 172.28.0.1, server: benfrio.test, request: "GET /nfe HTTP/1.1", upstream: "fastcgi://172.28.0.2:9001", host: "benfrio.test", referrer: "http://benfrio.test/saida/finalizasaida/017062"

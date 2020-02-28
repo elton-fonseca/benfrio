@@ -1,0 +1,79 @@
+strong, p, span {
+	font-size: 11px;
+}
+
+strong {
+	font-weight: 800;
+}
+
+.container {
+	cborder: 1px solid black;
+}
+
+p, p>span {
+	font-size: 11px;
+}
+
+.esquerda {
+	float: left;
+}
+
+.direita {
+	float: right;
+}
+
+.bemfrio {
+	height: 60px;
+	border-bottom: 1px solid black;
+}
+
+.bemfrio h2 {
+	margin: 4px 0 4px 70px; 
+}
+
+.bemfrio span {
+	margin-left: 70px;
+}
+
+.cliente {
+	margin-top: 10px;
+}
+
+
+.saida-detalhes-item {
+	float: left;
+	width: 49%;
+}
+
+
+
+/* estilo tabelas */
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 2px; 
+ font-size: 10px;
+  text-align: left; 
+  border: 1px solid #efefef;
+}
+
+
+.data {
+	width: 70px;
+}
+
+
+@page {
+	margin: 22px;
+ }

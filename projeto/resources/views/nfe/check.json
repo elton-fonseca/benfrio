@@ -1,0 +1,10 @@
+			    @if(existePdf($nfe->NF_EXP) && existeXml($nfe->NF_EXP, $data))
+					<a href='{{ URL::to("nfe/baixarxml/{$nfe->NF_EXP}/{$data}")  }}' class="btn btn-danger btn-sm">XML</a>
+					<a href='{{ URL::to("nfe/baixarpdf/{$nfe->NF_EXP}")  }}' class="btn btn-danger btn-sm">PDF</a>
+			    @elseif(existeXml($nfe->NF_EXP, $data))
+					<a href='{{ URL::to("nfe/baixarxml/{$nfe->NF_EXP}/{$data}")  }}' class="btn btn-danger btn-sm">XML</a>
+				@elseif(existePdf($nfe->NF_EXP))
+					<a href='{{ URL::to("nfe/baixarpdf/{$nfe->NF_EXP}")  }}' class="btn btn-danger btn-sm">PDF</a>
+				@else
+					<span>Indisponível</span>	
+				@endif	

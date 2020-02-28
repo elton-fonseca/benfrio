@@ -1,0 +1,251 @@
+@import 'http://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+
+
+/* Formulario de login */
+
+
+
+    .container {
+      position: relative;
+      -webkit-flex: 1 1 auto;
+      -moz-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      width: 50%;
+     
+      min-height: 360px;
+      margin: 0 auto;
+          }
+
+  
+
+    .container-saida {
+      position: relative;
+      -webkit-flex: 1 1 auto;
+      -moz-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      width: 400px;
+     
+      min-height: 50px;
+      margin: 0 auto;
+          }          
+
+    .caixa-login {
+      width: 100%;
+      background: #FFF;
+      padding: 1rem;
+      border-radius: 6px;
+
+     
+       margin: 0 auto;
+      }
+
+    .login_form{
+        background-color: #FFFFFF;
+        border: 1px solid #E5E5E5;
+        border-radius: 5px 5px 5px 5px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        margin: 0 auto 20px;
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        
+    }
+
+    .saida_form{
+        background-color: #FFFFFF;
+        border: 1px solid #E5E5E5;
+        border-radius: 5px 5px 5px 5px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        margin: 0 auto 20px;
+        max-width: 500px;
+        padding: 19px 29px 29px;
+        
+    }
+
+
+.container-table {
+  padding: 0 1em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+ 
+}
+
+.rodape {
+   position:fixed;
+   left:0;
+   bottom:0;
+   height:40px;
+   width:100%;
+   background-color: #333;
+   color: #FFF;
+
+}
+
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
+  @media only screen and (max-width: 460px), (min-device-width: 468px) and (max-device-width: 900px)  {
+  
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr { 
+      display: block; 
+    }
+    
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr { 
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    
+    tr { border: 1px solid #ccc; }
+    
+    td { 
+      /* Behave  like a "row" */
+      border: none;
+      cborder-bottom: 1px solid #eee; 
+      position: relative;
+      padding-left: 50%; 
+    }
+    
+    td:before { 
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%; 
+      padding-right: 10px; 
+      white-space: nowrap;
+    }
+    
+    /*
+    Label the data
+    */
+     td:before {
+      content: attr(data-th) ": ";
+      font-weight: bold;
+      width: 6.5em;
+      display: inline-block;
+    }
+
+    .container-saida {
+      margin-bottom: 5px;
+    }
+ 
+
+  }
+
+
+  @media only screen and (max-width: 377px), (min-device-width: 378px) and (max-device-width: 479px)  {
+    .rodapeStatus {
+      height: 100px;
+     position:fixed;
+     left:0;
+     bottom:0;
+     width:100%;
+     background-color: #333;
+     color: #FFF;      
+    }
+
+    .container-saida {
+      margin-bottom: 5px;
+      width: 90%;
+    }
+
+    .buscar-input { 
+      width: 250px;
+    }
+
+  }
+
+  /* Smartphones (portrait and landscape) ----------- */
+  @media only screen and (max-device-width : 480px) {
+    body { 
+      padding: 0; 
+      margin: 0; 
+       }
+
+       .container {
+        width: 100%;
+       }
+
+    .container-saida {
+      margin-bottom: 5px;
+    }
+    
+    }
+  
+  /* iPads (portrait and landscape) ----------- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 900px) {
+    body { 
+      width: 100%; 
+    }
+
+
+
+
+  }
+
+
+
+.img-download {
+  height: 30px;
+}
+
+.centro {
+  text-align: center;
+}
+
+
+
+
+.btn-direita {
+  float: right;
+  padding: 2px 15px 0 0;
+   display: inline-block;
+}
+
+.btn-direita strong {
+  font-size: 20px;
+
+ 
+}
+
+.espaco {
+  margin-top: 70px;
+}
+
+.status-saida {
+  float: left;
+}
+
+#vermelho  {
+  color: red;
+}
+
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #FFF;
+  font-weight: 900;
+}
