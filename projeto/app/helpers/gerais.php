@@ -109,7 +109,7 @@ use Symfony\Component\Finder\Finder;
       $finder->name("?{$nota}.pdf");
 
       //Passa o nome do arquivo para a variável
-      foreach ($finder->in("/home/benfrio/{$ano}/{$ano}{$mes}/PDF") as $file) {
+      foreach ($finder->in("/home/benfrio/ftp/{$ano}/{$ano}{$mes}/PDF") as $file) {
           $arquivo = $file->getRealpath();
       }
       //echo $arquivo;
@@ -141,7 +141,7 @@ use Symfony\Component\Finder\Finder;
       $finder->name("??????????????????????????????????????{$nota}?-nfe.xml");
 
       //Passa o nome do arquivo para a variável
-      foreach ($finder->in("/home/benfrio/{$ano}/{$ano}{$mes}") as $file) {
+      foreach ($finder->in("/home/benfrio/ftp/{$ano}/{$ano}{$mes}") as $file) {
           $arquivo = $file->getRealpath();
       }
       //echo $arquivo;
@@ -177,7 +177,7 @@ use Symfony\Component\Finder\Finder;
       $finder->name("??????????????????????????????????????{$nota}?-nfe.xml");
 
       //Passa o nome do arquivo para a variável
-      foreach ($finder->in("/home/benfrio/{$ano}/{$ano}{$mes}") as $file) {
+      foreach ($finder->in("/home/benfrio/ftp/{$ano}/{$ano}{$mes}") as $file) {
           $arquivo = $file->getRealpath();
       }
 
@@ -194,7 +194,7 @@ use Symfony\Component\Finder\Finder;
         $finder->name("?{$nota}.pdf");
     
         //Passa o nome do arquivo para a variável
-        foreach ($finder->in("/home/benfrio/{$ano}/{$ano}{$mes}/PDF") as $file) {
+        foreach ($finder->in("/home/benfrio/ftp/{$ano}/{$ano}{$mes}/PDF") as $file) {
             $arquivo = $file->getRealpath();
         }
     
