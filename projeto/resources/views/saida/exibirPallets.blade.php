@@ -80,9 +80,10 @@
 						@if (!$empenhado)
 			    	<select id="select_{{ $pallet->numero_pal }}">
 			    	  <option value="indiferente">Indiferen.</option>
-					  <option value="traseira">Traseira</option>
-					  <option value="meio">Meio</option>
-					  <option value="frente">Frente</option>
+					  <option value="primeiro">1° a carregar</option>
+					  <option value="segundo">2°  a carregar</option>
+					  <option value="terceiro">3° a carregar</option>
+					  <option value="quarto">4° a carregar</option>
 					</select>
 					@endif
 					</td>	

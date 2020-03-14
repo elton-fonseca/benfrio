@@ -38,7 +38,7 @@
 		    <td data-th="Descrição">({{ $item->CODIGO_PRO }}) {{ isset($item->DESCRI_PRO) ? $item->DESCRI_PRO : 0 }}</td>
 		    <td data-th="Volume">{{ isset($item->QTD_SA1) ? $item->QTD_SA1 : 0 }}</td>
 		    <td data-th="Peso B.">{{ isset($item->PESO_SA1) ? formataNumero($item->PESO_SA1+100): 0 }}</td>
-		    <td data-th="Posição">{{ $item->POSICAO_SA1 }}</td>
+			<td data-th="Posição">{{ posicao($item->POSICAO_SA1) }}</td>
 		  	<td data-th="OBS">{{ isset($item->OBS1_PAL) ? $item->OBS1_PAL : "-" }}</td>
 		  </tr>		
 		  @endforeach

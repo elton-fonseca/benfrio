@@ -69,7 +69,7 @@
 			    <td data-th="Volume">{{ isset($item->QTD_SA1) ? (int) $item->QTD_SA1 : 0 }}</td>
 			    <td data-th="Peso L.">{{ isset($item->PESOLIQ_SA1) ? formataNumero($item->PESOLIQ_SA1) : 0 }}</td>
 			    <td data-th="Peso B.">{{ isset($item->PESO_SA1) ? formataNumero($item->PESO_SA1) : 0 }}</td>
-			    <td data-th="Posição">{{ $item->POSICAO_SA1 }}</td>
+				<td data-th="Posição">{{ posicao($item->POSICAO_SA1) }}</td>
 			    <td data-th="OBS">{{ isset($item->OBS1_PAL) ? $item->OBS1_PAL : "-" }}</td>
 			    <td data-th="Remover"><a href='{{URL::to("itemsaida/deletapallet/{$saida->NUMERO_SAI}/{$item->PALLET_SA1}/f")}}'>Remover</span></td>
 			  </tr>		

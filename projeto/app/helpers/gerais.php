@@ -47,6 +47,27 @@ use Symfony\Component\Finder\Finder;
       return str_replace('.', '', $value);
   }
 
+  function posicao($posicao)
+  {
+    if ($posicao == "primeiro") {
+        return "1° a carregar";
+    }
+
+    if ($posicao == "segundo") {
+        return "2° a carregar";
+    }
+
+    if ($posicao == "terceiro") {
+        return "3° a carregar";
+    }
+
+    if ($posicao == "quarto") {
+        return "4° a carregar";
+    }
+
+    return $posicao;
+  }
+
   //Formata hora para formato HH:MM
   function gerarPDF($html, $horientacao="retrato")
   {
@@ -206,3 +227,5 @@ use Symfony\Component\Finder\Finder;
   {
       return substr($pallet, 0, 8);
   }
+
+  
