@@ -6,33 +6,9 @@
 
 
 <!-- Modal -->
-<div class="modal show" id="myModal" role="dialog">
-  <div class="modal-dialog">
-  
-	<!-- Modal content-->
-	<div class="modal-content">
-	  <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" onclick="$('.modal').removeClass('show').addClass('fade');">&times;</button>
-		<h4 class="modal-title">AVISO</h4>
-	  </div>
-	  <div class="modal-body">
-		<p>É necessário clicar no botão <strong>Terminar</strong> para efetivar o pedido</p>
-	  </div>
-	  <div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('.modal').removeClass('show').addClass('fade');">Fechar Mensagem</button>
-	  </div>
-	</div>
-	
-  </div>
-</div>
-
-
-	<div class="alert alert-danger">
-		<p>É necessário clicar no botão <strong>terminar</strong> para o pedido ser efetivado</p>
-	</div>
 
       <div class="caixa-login">
-        <h2>Finalizar Pedido - Confirme os valores</h2>
+        <h2>Confirme seu pedido</h2>
         <p><strong>Numero Saída: </strong>{{ $saida->NUMERO_SAI }}</p>
         <p><strong>Data Criação: </strong>{{ mysqlToBr($saida->EMISSA_SAI) }}</p>
         <p><strong>Data previsão de retirada: </strong>{{ mysqlToBr($saida->DATAS_SAI) }}</p>
@@ -76,13 +52,15 @@
 			@endforeach
 			</tbody>  
 		</table>
-
+		<div class="btn-direita" style="margin-top: 10px;">
+			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-lg btn-danger" style="font-size: 25px; padding: 20px 25px; margin-right: -19px;">Enviar</a>
+		</div>
+		
 		<div class="espaco"></div>
 
     </div>
 
 	<div class="rodape">
-	<div class="btn-direita"><a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-default">Terminar</a></div>
 		<div class="btn-direita"><a href='{{ URL::to("saida/exibepallets/{$saida->NUMERO_SAI}")  }}' class="btn btn-default">Inserir Mais pallets</a></div>
 	</div>
 

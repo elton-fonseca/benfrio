@@ -65,6 +65,14 @@ use Symfony\Component\Finder\Finder;
         return "4° a carregar";
     }
 
+    if ($posicao == "quinto") {
+        return "5° a carregar";
+    }
+
+    if ($posicao == "sexto") {
+        return "6° a carregar";
+    }
+
     return $posicao;
   }
 

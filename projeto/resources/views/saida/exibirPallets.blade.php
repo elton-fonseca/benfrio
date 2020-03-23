@@ -2,11 +2,6 @@
 @extends('common.base')
 
 @section('body')
-	<div class="container-table">
-		<div class="alert alert-danger">
-			<p>É necessário clicar no botão <strong>terminar</strong> na próxima tela para o pedido ser efetivado</p>
-		</div>
-	</div>
     <div class="container-saida" style="width: 500px">
         {{ Form::open(array(
             'url' => "saida/exibepalletsbusca/{$saida}",
@@ -84,6 +79,8 @@
 					  <option value="segundo">2°  a carregar</option>
 					  <option value="terceiro">3° a carregar</option>
 					  <option value="quarto">4° a carregar</option>
+					  <option value="quinto">5° a carregar</option>
+					  <option value="sexto">6° a carregar</option>
 					</select>
 					@endif
 					</td>	

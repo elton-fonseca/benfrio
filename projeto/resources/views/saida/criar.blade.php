@@ -3,10 +3,6 @@
 
 @section('body')
     <div class="container">
-        <div class="alert alert-danger">
-            <p>É necessário chegar até o final do processo para o pedido ser efetivado</p>
-        </div>
-
         @if ($errors->any())
             <ul class="alert alert-danger">
                 @foreach($errors->all() as $error)
