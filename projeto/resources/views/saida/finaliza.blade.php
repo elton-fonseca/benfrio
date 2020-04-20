@@ -52,18 +52,19 @@
 			@endforeach
 			</tbody>  
 		</table>
-		<div class="btn-direita" style="margin-top: 10px;">
+		<div style="margin-top: 10px; float: left;">
+			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-primary" onclick="alert('Seu pedido foi enviado com sucesso!')">Enviar</a>
 		</div>
 		
 		<div class="espaco"></div>
 
     </div>
 
-	<div class="rodape" style="height: 84px;">
+	<div class="rodape">
 		<div class="btn-direita">
-			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-lg btn-danger" style="font-size: 25px; padding: 20px 25px;" onclick="alert('Seu pedido foi enviado com sucesso!')">Enviar</a>
+			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-default" onclick="alert('Seu pedido foi enviado com sucesso!')">Enviar</a>
 		</div>
-		<div class="btn-direita"><a href='{{ URL::to("saida/exibepallets/{$saida->NUMERO_SAI}")  }}' class="btn btn-default" style="margin-top: 18px;">Inserir Mais pallets</a></div>
+		<div class="btn-direita"><a href='{{ URL::to("saida/exibepallets/{$saida->NUMERO_SAI}")  }}' class="btn btn-default">Inserir Mais pallets</a></div>
 
 	</div>
 
