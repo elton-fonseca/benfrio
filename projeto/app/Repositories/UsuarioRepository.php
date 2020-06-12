@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Saida;
-
 class UsuarioRepository
 {
     public function buscarUsuario($dados)

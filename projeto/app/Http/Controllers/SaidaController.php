@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 use App\Repositories\SaidaRepository;
+use App\Repositories\SaidaTempRepository;
 use App\Repositories\ItemSaidaRepository;
+use App\Repositories\ItemSaidaTempRepository;
 use App\Repositories\EntradaRepository;
 use App\Repositories\UsuarioRepository;
 
@@ -18,7 +20,9 @@ class SaidaController extends Controller
     public function __construct()
     {
         $this->saida = new SaidaRepository();
+        $this->saidaTemp = new SaidaTempRepository();
         $this->itemSaida = new ItemSaidaRepository();
+        $this->itemSaidaTemp = new ItemSaidaTempRepository();
         $this->entrada = new EntradaRepository();
         $this->usuario = new UsuarioRepository();
     }
@@ -35,11 +39,10 @@ class SaidaController extends Controller
     //Realiza a criação de saida
     public function criarPost(SaidaRequest $request)
     {
-        //Cria a saida
-        if ($this->saida->criarSaida($request->all())) {
-            //O método gerar chave
-            $saida = $this->saida->ultimoID();
-            return \Redirect::to("saida/exibepallets/{$saida}");
+        $saidaId = $this->saidaTemp->criarSaida($request->all());
+        
+        if ($saidaId) {
+            return \Redirect::to("saida/exibepallets/{$saidaId}");
         }
         
         return \Redirect::route('saidaCriar')
@@ -91,8 +94,9 @@ class SaidaController extends Controller
         $dados['saida'] = $saida;
         
         //Pega os totais dos itens de saida
-        $dados['totalItens'] = $this->itemSaida->getTotais($dados['saida']);
+        $dados['totalItens'] = $this->itemSaidaTemp->getTotais($saida);
 
+        $dados['itensExistentes'] = $this->itemSaidaTemp->getBySaida($saida);
 
         return \View::make('saida.exibirPallets', $dados);
     }
@@ -135,15 +139,14 @@ class SaidaController extends Controller
     //Exibe página de finalização do pedido
     public function finalizaSaida($saida)
     {
-        
         //Recebe os saidas do repositorio de saidas
-        $dados['saida'] = $this->saida->getSaida($saida);
+        $dados['saida'] = $this->saidaTemp->getSaida($saida);
 
         //Recebe os itens da saida
-        $dados['itens'] = $this->itemSaida->getBySaida($saida);
+        $dados['itens'] = $this->itemSaidaTemp->getBySaida($saida);
 
         //Pega os totais dos itens de saida
-        $dados['totalItens'] = $this->itemSaida->getTotais($saida);
+        $dados['totalItens'] = $this->itemSaidaTemp->getTotais($saida);
 
         return \View::make('saida.finaliza', $dados);
     }
@@ -151,37 +154,46 @@ class SaidaController extends Controller
     //Exibe página de finalização do pedido
     public function emailSaida($saida)
     {
-        
-        //Recebe os saidas do repositorio de saidas
-        $dados['saida'] = $this->saida->getSaida($saida);
+        try {
+            \DB::beginTransaction();
+            
+            //Recebe os saidas do repositorio de saidas
+            $saidaTemp= $this->saidaTemp->getSaida($saida);
+            $novasaida = $this->saida->criarSaida($saidaTemp);
 
-        //Recebe os itens da saida
-        $dados['itens'] = $this->itemSaida->getBySaida($saida);
+            //Recebe os itens da saida
+            $itensTemp = $this->itemSaidaTemp->getLimpoBySaida($saidaTemp->NUMERO_SAI);
+            $itensNovo = $this->itemSaida->addItens($itensTemp, $novasaida->NUMERO_SAI);
 
-        //Pega os totais dos itens de saida
-        $dados['totalItens'] = $this->itemSaida->getTotais($saida);
-        
-        $usuario = $this->usuario->getCliente();
+            $dados['totalItens'] = $this->itemSaida->getTotais($saida);
+            $dados['saida'] = $novasaida;
+            $dados['itens'] = $this->itemSaida->getBySaida($novasaida->NUMERO_SAI);
+            
+            $usuario = $this->usuario->getCliente();
 
-        \DB::table('cadsai')
-            ->where('NUMERO_SAI', $dados["saida"]->NUMERO_SAI)
-            ->update(['CONCLUIRWEB_SAI' => date('Y-m-d h:i:s')]);
+            //Envia email
+            \Mail::send('saida.email', $dados, function ($message) use ($usuario, $dados) {
+                global $novasaida;
+                $message->to('elton869@gmail.com', 'Pedido')
+                ->subject('Ped. saida ' . " Cliente(" . ucwords(strtolower($usuario->NOME_CLI)) . ") Pla(". $dados["saida"]->PLACA_SAI . ") N(" . $dados["saida"]->NUMERO_SAI . ")");
+            });
 
-        //Envia email
-        \Mail::send('saida.email', $dados, function ($message) use ($usuario, $dados) {
-            global $saida;
-            $message->to('pedido@benfrio.com', 'Pedido')
-            ->subject('Ped. saida ' . " Cliente(" . ucwords(strtolower($usuario->NOME_CLI)) . ") Pla(". $dados["saida"]->PLACA_SAI . ") N(" . $dados["saida"]->NUMERO_SAI . ")");
-        });
+            \DB::commit();
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            
+            return redirect()->route("saidaFinaliza", $saida)
+                    ->with('mensagem', "Erro ao criar pedido! (".$e->getMessage().")")
+                    ->withInput();
+        }
 
-        return \Redirect::to("saida");
+        return \Redirect::to("saida")->with('mensagem', "Pedido Criado com sucesso");
     }
 
 
     //Exibe página de finalização do pedido
     public function visualizarSaida($saida)
     {
-        
         //Recebe os saidas do repositorio de saidas
         $dados['saida'] = $this->saida->getSaida($saida);
 
@@ -193,8 +205,6 @@ class SaidaController extends Controller
 
         return \View::make('saida.visualizar', $dados);
     }
-
-
 
     //Remove saidas
     public function deletaSaida($saida)
@@ -228,8 +238,6 @@ class SaidaController extends Controller
     //Gera o PDF com os detalhes da saida
     public function finalizaSaidaPdf($saida)
     {
-        
-
         //Recebe os saidas do repositorio de saidas
         $dados['saida'] = $this->saida->getSaida($saida);
 

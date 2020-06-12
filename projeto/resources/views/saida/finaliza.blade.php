@@ -3,13 +3,8 @@
 
 @section('body')
     <div class="container">
-
-
-<!-- Modal -->
-
       <div class="caixa-login">
         <h2>Confirme seu pedido</h2>
-        <p><strong>Numero Saída: </strong>{{ $saida->NUMERO_SAI }}</p>
         <p><strong>Data Criação: </strong>{{ mysqlToBr($saida->EMISSA_SAI) }}</p>
         <p><strong>Data previsão de retirada: </strong>{{ mysqlToBr($saida->DATAS_SAI) }}</p>
         <p><strong>Hora previsão de retirada: </strong>{{ (strlen($saida->CHEGADA_SAI) >= 4) ? formataHora($saida->CHEGADA_SAI) : 0 }}</p>

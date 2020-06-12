@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Repositories\ItemSaidaRepository;
+use App\Repositories\ItemSaidaTempRepository;
 use App\Repositories\EntradaRepository;
 
 class ItemSaidaController extends Controller
@@ -11,6 +12,7 @@ class ItemSaidaController extends Controller
     public function __construct()
     {
         $this->itemSaida = new ItemSaidaRepository();
+        $this->itemSaidaTemp = new ItemSaidaTempRepository();
         $this->entrada = new EntradaRepository();
     }
 
@@ -20,7 +22,7 @@ class ItemSaidaController extends Controller
         //Recebe os pallet do repositorio de entrada
         $pallet = $this->entrada->retornaPallet($pallet);
 
-        if ($this->itemSaida->addItem($saida, $pallet, $posicao) && $this->entrada->empenhaPallet($pallet)) {
+        if ($this->itemSaidaTemp->addItem($saida, $pallet, $posicao)) {
             echo "sucesso";
         } else {
             echo "falha";
@@ -33,7 +35,7 @@ class ItemSaidaController extends Controller
         //Recebe os pallet do repositorio de entrada
         $pallet = $this->entrada->retornaPallet($pallet);
 
-        if ($this->itemSaida->deletaItem($saida, $pallet) && $this->entrada->desempenhaPallet($pallet)) {
+        if ($this->itemSaidaTemp->deletaItem($saida, $pallet)) {
             if ($pagina == 'f') {
                 return \Redirect::to("saida/finalizasaida/{$saida}")
                     ->with('mensagem', 'Excluído com sucesso');
@@ -49,7 +51,7 @@ class ItemSaidaController extends Controller
     public function statusItens($saida)
     {
         //Pega os totais dos itens de saida
-        $dados = $this->itemSaida->getTotais($saida);
+        $dados = $this->itemSaidaTemp->getTotais($saida);
 
         $pesoBruto = $dados->t_liq + ($dados->qtd_pallets * 100);
 

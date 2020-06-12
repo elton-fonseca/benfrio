@@ -57,8 +57,9 @@
 			      for ($i=0; $i<3; $i++) {
 			      	if ($vencto < date('Y-m-d') )
 				     	$vencto = date('Y-m-d', strtotime("+15 days",strtotime($vencto)));
-						}
-						$empenhado = $pallet->ev_pal > 0;
+					}
+					$empenhado = $pallet->ev_pal > 0 || $itensExistentes->where('PALLET_SA1', $pallet->numero_pal)->isNotEmpty();
+					
 				?>  
 
 			  
@@ -69,7 +70,7 @@
 			    <td data-th="Saldo">{{ formataNumero($pallet->saldo_pal) }}</td>
 			    <td data-th="Data Ent.">{{ mysqlToBr($pallet->dta_ent) }}</td>
 					<td data-th="Vencto">{{ mysqlToBr($vencto) }}</td>
-					<td data-th="Status">{{ $empenhado ? formataNumero($pallet->ev_pal).'-empenhado' : 'disponível' }}</td>
+					<td data-th="Status">{{ $empenhado ? ($pallet->ev_pal > 0 ? formataNumero($pallet->ev_pal).'-empenhado': formataNumero($pallet->saldo_pal).'-empenhado') : 'disponível' }}</td>
 			    <td data-th="Obs">{{ empty($pallet->obs1_pal) ? '-' : $pallet->obs1_pal }}</td>
 			    <td id="td_posicao_{{ $pallet->numero_pal }}" data-th="posição">
 						@if (!$empenhado)

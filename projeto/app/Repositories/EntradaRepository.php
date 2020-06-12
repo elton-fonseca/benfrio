@@ -59,8 +59,6 @@ class EntradaRepository
     //Realiza o emprenho do pallet
     public function empenhaPallet($pallet)
     {
-
-        //Realiza o emprenho
         return \DB::table('cadpal')
                 ->where('numero_pal', $pallet->NUMERO_PAL)
                 ->update(array('EV_PAL' => $pallet->SALDO_PAL,

@@ -23,20 +23,22 @@ class SaidaRepository
     //Cria uma saída a partir dos dados do formulário
     public function criarSaida($saida)
     {
-        $msaida = new Saida;
-        $msaida->NUMERO_SAI = $this->addZero($this->ultimoID()+1);
-        $msaida->PLACA_SAI = $saida['placa'];
-        $msaida->DATAS_SAI = implode("-", array_reverse(explode("/", $saida['datas'])));
-        $msaida->CHEGADA_SAI = ($saida['chegada']) ? formataHoraBanco($saida['chegada']) : 0;
-        $msaida->OBS_SAI = $saida['obs'];
+        $novaSaida = new \stdClass;
+        $novaSaida->NUMERO_SAI = $this->addZero($this->ultimoID()+1);
+        $novaSaida->PLACA_SAI = $saida->PLACA_SAI;
+        $novaSaida->DATAS_SAI = $saida->DATAS_SAI;
+        $novaSaida->CHEGADA_SAI = $saida->CHEGADA_SAI;
+        $novaSaida->OBS_SAI = $saida->OBS_SAI;
 
         //automáticos
-        $msaida->CODCLI_SAI = \Session::get('cod_cliente');
-        $msaida->EMISSA_SAI = date('Y-m-d');
-        $msaida->HORA_SAI = date('Hi');
-        $msaida->WEB_SAI = '1';
+        $novaSaida->CODCLI_SAI = \Session::get('cod_cliente');
+        $novaSaida->EMISSA_SAI = date('Y-m-d');
+        $novaSaida->HORA_SAI = date('Hi');
+        $novaSaida->WEB_SAI = '1';
 
-        return $msaida->save();
+        \DB::table('cadsai')->insert((array) $novaSaida);
+
+        return $novaSaida;
     }
 
 
@@ -102,7 +104,7 @@ class SaidaRepository
         $codcli = (string) \Session::get('cod_cliente');
 
         //Grava o log quando exclui
-        \DB::table('CADLOG')->insert(
+        \DB::table('cadlog')->insert(
             array(
                 'NUMERO_LOG' => $saida,
                 'GUIA_LOG' => "S",
@@ -111,9 +113,6 @@ class SaidaRepository
                 'USUARIO_LOG' => $codcli
                 )
         );
-
-
-
 
         //Recebe os pallet do repositorio de entrada
         $teste = \DB::table('cadsai')
