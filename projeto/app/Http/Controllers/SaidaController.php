@@ -111,8 +111,9 @@ class SaidaController extends Controller
         $dados['saida'] = $saida;
         
         //Pega os totais dos itens de saida
-        $dados['totalItens'] = $this->itemSaida->getTotais($dados['saida']);
+        $dados['totalItens'] = $this->itemSaidaTemp->getTotais($saida);
 
+        $dados['itensExistentes'] = $this->itemSaidaTemp->getBySaida($saida);
 
         return \View::make('saida.exibirPallets', $dados);
     }
@@ -254,5 +255,20 @@ class SaidaController extends Controller
         $html = \View::make('pdf.saida.finalizar', $dados)->render();
 
         return gerarPDF($html);
+    }
+
+    //Gerar XLS
+    public function saidaPendenteRelatorioXls()
+    {
+        $saidas = $this->saida->listarSaidasPendentes();
+
+        $html = \View::make(
+            'xls.saida.pendentes',
+            [
+            'saidas' => $saidas
+            ]
+        )->render();
+
+        return gerarXls($html);
     }
 }

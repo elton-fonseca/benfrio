@@ -48,7 +48,7 @@
 			</tbody>  
 		</table>
 		<div style="margin-top: 10px; float: left;">
-			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-primary" onclick="alert('Seu pedido foi enviado com sucesso!')">Enviar</a>
+			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-primary">Enviar</a>
 		</div>
 		
 		<div class="espaco"></div>
@@ -57,7 +57,7 @@
 
 	<div class="rodape">
 		<div class="btn-direita">
-			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-default" onclick="alert('Seu pedido foi enviado com sucesso!')">Enviar</a>
+			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-default">Enviar</a>
 		</div>
 		<div class="btn-direita"><a href='{{ URL::to("saida/exibepallets/{$saida->NUMERO_SAI}")  }}' class="btn btn-default">Inserir Mais pallets</a></div>
 

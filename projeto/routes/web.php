@@ -97,8 +97,8 @@ Route::middleware(['my_auth'])->group(function () {
             //Apaga uma saida e todos os itens
         Route::get('/deletasaida/{saida}', ['as' => 'saidaDeleta', 'uses' => 'SaidaController@deletaSaida']);
 
-            //Exibe página de edição
-        //Route::get('/editarsaida/{saida}', ['as' => 'saidaEditar', 'uses' => 'SaidaController@editarSaida']);		
+        //Exibe página de edição
+        Route::get('/relatorio-saidas-pendentes-xls', ['as' => 'relatorioSaidasPendentes', 'uses' => 'SaidaController@saidaPendenteRelatorioXls']);		
         
     });
 

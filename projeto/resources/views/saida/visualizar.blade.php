@@ -22,7 +22,7 @@
 			<thead>
 			  <tr>
 					<th>N Pallet</th>
-					<th>N Pallet</th>
+					<th>Lote Cliente</th>
 			    <th>Produto</th>
 			    <th>Volume</th>
 			    <th>Peso L.</th>
