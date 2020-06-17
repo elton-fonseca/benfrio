@@ -130,10 +130,10 @@ class SaidaRepository
             ->join('cadsa1', 'cadsai.NUMERO_SAI', '=', 'cadsa1.NUMERO_SA1')
             ->join('caden1', 'caden1.lote_en1', '=', \DB::raw('left(cadsa1.PALLET_SA1, 8)'))
             ->join('cadpro', 'caden1.codpro_en1', '=', 'cadpro.codigo_pro')
-            ->join('cadpal', 'cadsa1.PALLET_SA1', '=', 'cadpal.NUMERO_PAL')
             ->where('CODCLI_SAI', \Session::get('cod_cliente'))
             ->whereBetween('EMISSA_SAI', array( date('Y-m-d', strtotime("-15 days")), date('Y-m-d') ))
             ->where('NFS_SAI', '')
+            ->where('CODCLI_SAI', \DB::RAW('CODCLI_PRO'))
             ->orderBy('NUMERO_SAI', 'desc')
             ->get();
 

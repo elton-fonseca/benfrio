@@ -175,7 +175,7 @@ class SaidaController extends Controller
             //Envia email
             \Mail::send('saida.email', $dados, function ($message) use ($usuario, $dados) {
                 global $novasaida;
-                $message->to('elton869@gmail.com', 'Pedido')
+                $message->to('pedido@benfrio.com', 'Pedido')
                 ->subject('Ped. saida ' . " Cliente(" . ucwords(strtolower($usuario->NOME_CLI)) . ") Pla(". $dados["saida"]->PLACA_SAI . ") N(" . $dados["saida"]->NUMERO_SAI . ")");
             });
 
