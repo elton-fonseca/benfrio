@@ -166,7 +166,7 @@ class SaidaController extends Controller
             $itensTemp = $this->itemSaidaTemp->getLimpoBySaida($saidaTemp->NUMERO_SAI);
             $itensNovo = $this->itemSaida->addItens($itensTemp, $novasaida->NUMERO_SAI);
 
-            $dados['totalItens'] = $this->itemSaida->getTotais($saida);
+            $dados['totalItens'] = $this->itemSaida->getTotais($novasaida->NUMERO_SAI);
             $dados['saida'] = $novasaida;
             $dados['itens'] = $this->itemSaida->getBySaida($novasaida->NUMERO_SAI);
             
