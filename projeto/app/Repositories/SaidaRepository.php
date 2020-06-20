@@ -11,7 +11,7 @@ class SaidaRepository
     public function listarSaidas()
     {
         $dados = \DB::table('cadsai')
-            ->select('NUMERO_SAI', 'PLACA_SAI', 'EMISSA_SAI', 'DATAS_SAI', 'CHEGADA_SAI', 'OBS_SAI', 'NFS_SAI', 'WEB_SAI', 'IMPRESSA_SAI')
+            ->select('NUMERO_SAI', 'PLACA_SAI', 'EMISSA_SAI', 'DATAS_SAI', 'CHEGADA_SAI', 'OBS_SAI', 'NFS_SAI', 'WEB_SAI', 'IMPRESSA_SAI', 'NFS1_SAI')
             ->where('CODCLI_SAI', \Session::get('cod_cliente'))
             ->whereBetween('EMISSA_SAI', array( date('Y-m-d', strtotime("-15 days")), date('Y-m-d') ))
             ->orderBy('NUMERO_SAI', 'desc')
@@ -132,7 +132,7 @@ class SaidaRepository
             ->join('cadpro', 'caden1.codpro_en1', '=', 'cadpro.codigo_pro')
             ->where('CODCLI_SAI', \Session::get('cod_cliente'))
             ->whereBetween('EMISSA_SAI', array( date('Y-m-d', strtotime("-15 days")), date('Y-m-d') ))
-            ->where('NFS_SAI', '')
+            ->whereNull('NFS1_SAI')
             ->where('CODCLI_SAI', \DB::RAW('CODCLI_PRO'))
             ->orderBy('NUMERO_SAI', 'desc')
             ->get();

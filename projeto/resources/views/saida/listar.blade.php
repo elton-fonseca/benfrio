@@ -28,7 +28,7 @@
 						<td data-th="Gerar PDF"><a href='{{ URL::to("saida/finalizasaidapdf/{$saida->NUMERO_SAI}") }}' class="btn btn-default btn-sm">Gerar PDF</a></td>
 						<td data-th="visualizar"><a href='{{ URL::to("saida/visualizarsaida/{$saida->NUMERO_SAI}")  }}' class="btn btn-success btn-sm">visualizar</a></td>
 						@if($saida->WEB_SAI = '1')	
-							@if($saida->NFS_SAI)
+							@if($saida->NFS1_SAI)
 								<td data-th="Apagar">Expedido</td>
 							@elseif($saida->IMPRESSA_SAI == "1")
 								<td data-th="Apagar">Em Separação</td>
