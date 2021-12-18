@@ -105,7 +105,7 @@ Route::middleware(['my_auth'])->group(function () {
     //Rotas de Item de saida
     Route::prefix('itemsaida')->group(function () {
         //Realiza a adição de pallet na saida
-        Route::get('/addpallet/{saida}/{pallet}/{posicao}', ['as' => 'saidaAddPallets', 'uses' => 'ItemSaidaController@addPallet']);
+        Route::get('/addpallet/{saida}/{pallet}/{posicao}/{quantidade}', ['as' => 'saidaAddPallets', 'uses' => 'ItemSaidaController@addPallet']);
         Route::get('/deletapallet/{saida}/{pallet}/{pagina}', ['as' => 'saidaDeletaPallets', 'uses' => 'ItemSaidaController@deletaPallet']);
         
         //Retorna o status atual do saida

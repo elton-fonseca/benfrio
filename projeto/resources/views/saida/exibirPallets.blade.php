@@ -35,14 +35,15 @@
 		<table class="rwd-table">
 			<thead>
 			  <tr>
-					<th>N Pallet</th>
-					<th>Lote Cliente</th>
+				<th>N Pallet</th>
+				<th>Lote Cliente</th>
 			    <th>Produto</th>
 			    <th>Saldo</th>
 			    <th>Data Ent.</th>
 			    <th>Vencto</th>
-					<th>Status</th>
-					<th>Obs</th>
+				<th>Status</th>
+				<th>Obs</th>
+				<th>Quantidade</th>
 			    <th>Posição</th>
 			    <th>Adicionar</th>
 			  </tr>
@@ -63,34 +64,39 @@
 				?>  
 
 			  
-			  <tr style="background-color: {{ $empenhado ? '#d6bebe' : ''}}" id="tr_{{ $pallet->numero_pal }}">
-					<td data-th="N Pallet">{{ formataPallet($pallet->numero_pal) }}</td>
-					<td data-th="Lote Clientet">{{ $pallet->REFE_EN1 }}</td>
+			<tr style="background-color: {{ $empenhado ? '#d6bebe' : ''}}" id="tr_{{ $pallet->numero_pal }}">
+				<td data-th="N Pallet">{{ formataPallet($pallet->numero_pal) }}</td>
+				<td data-th="Lote Clientet">{{ $pallet->REFE_EN1 }}</td>
 			    <td data-th="Produto">({{ $pallet->codigo_pro }}) {{ $pallet->descri_pro }}</td>
 			    <td data-th="Saldo">{{ formataNumero($pallet->saldo_pal) }}</td>
 			    <td data-th="Data Ent.">{{ mysqlToBr($pallet->dta_ent) }}</td>
-					<td data-th="Vencto">{{ mysqlToBr($vencto) }}</td>
-					<td data-th="Status">{{ $empenhado ? ($pallet->ev_pal > 0 ? formataNumero($pallet->ev_pal).'-empenhado': formataNumero($pallet->saldo_pal).'-empenhado') : 'disponível' }}</td>
+				<td data-th="Vencto">{{ mysqlToBr($vencto) }}</td>
+				<td data-th="Status">{{ $empenhado ? ($pallet->ev_pal > 0 ? formataNumero($pallet->ev_pal).'-empenhado': formataNumero($pallet->saldo_pal).'-empenhado') : 'disponível' }}</td>
 			    <td data-th="Obs">{{ empty($pallet->obs1_pal) ? '-' : $pallet->obs1_pal }}</td>
-			    <td id="td_posicao_{{ $pallet->numero_pal }}" data-th="posição">
-						@if (!$empenhado)
-			    	<select id="select_{{ $pallet->numero_pal }}">
-			    	  <option value="indiferente">Indiferen.</option>
-					  <option value="primeiro">1° a carregar</option>
-					  <option value="segundo">2°  a carregar</option>
-					  <option value="terceiro">3° a carregar</option>
-					  <option value="quarto">4° a carregar</option>
-					  <option value="quinto">5° a carregar</option>
-					  <option value="sexto">6° a carregar</option>
-					</select>
-					@endif
-					</td>	
+				<td data-th="Quantidade">
 					@if (!$empenhado)
-						<td id="td_add_{{ $pallet->numero_pal }}" data-th="Adicionar"><button onClick="addPallet('{{ $saida }}', '{{ $pallet->numero_pal }}')">Adiciona</button></td>
-					@else
-						<td></td>	
-					@endif	
-				</tr>	
+						<input type="number" id="quantidade_{{ $pallet->numero_pal }}" >
+					@endif
+				</td>
+			    <td id="td_posicao_{{ $pallet->numero_pal }}" data-th="posição">
+					@if (!$empenhado)
+						<select id="select_{{ $pallet->numero_pal }}">
+							<option value="indiferente">Indiferen.</option>
+							<option value="primeiro">1° a carregar</option>
+							<option value="segundo">2°  a carregar</option>
+							<option value="terceiro">3° a carregar</option>
+							<option value="quarto">4° a carregar</option>
+							<option value="quinto">5° a carregar</option>
+							<option value="sexto">6° a carregar</option>
+						</select>
+					@endif
+				</td>	
+				@if (!$empenhado)
+					<td id="td_add_{{ $pallet->numero_pal }}" data-th="Adicionar"><button onClick="addPallet('{{ $saida }}', '{{ $pallet->numero_pal }}')">Adiciona</button></td>
+				@else
+					<td></td>	
+				@endif	
+			</tr>	
 			  		
 			  @endforeach
 			</tbody>  

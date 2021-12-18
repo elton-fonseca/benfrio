@@ -17,8 +17,9 @@ class ItemSaidaController extends Controller
     }
 
     //Adicionar Pallet a saida
-    public function addPallet($saida, $pallet, $posicao)
+    public function addPallet($saida, $pallet, $posicao, $quantidade)
     {
+        dd($quantidade);
         //Recebe os pallet do repositorio de entrada
         $pallet = $this->entrada->retornaPallet($pallet);
 

@@ -96,6 +96,7 @@ class SaidaController extends Controller
         //Pega os totais dos itens de saida
         $dados['totalItens'] = $this->itemSaidaTemp->getTotais($saida);
 
+        //parcial precisa somar tanto os temps quanto os já adicionado
         $dados['itensExistentes'] = $this->itemSaidaTemp->getBySaida($saida);
 
         return \View::make('saida.exibirPallets', $dados);
