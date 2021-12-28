@@ -19,11 +19,19 @@ class ItemSaidaController extends Controller
     //Adicionar Pallet a saida
     public function addPallet($saida, $pallet, $posicao, $quantidade)
     {
-        dd($quantidade);
         //Recebe os pallet do repositorio de entrada
-        $pallet = $this->entrada->retornaPallet($pallet);
+        $palletItem = $this->entrada->retornaPallet($pallet);
 
-        if ($this->itemSaidaTemp->addItem($saida, $pallet, $posicao)) {
+        //pegar por saida e pallet
+        if ($this->itemSaidaTemp->getPalletNaSaida($pallet, $saida)) {
+            return 'Esse item já está adicionado a saída';
+        }
+
+        if ($quantidade > ($palletItem->SALDO_PAL - $palletItem->EV_PAL)) {
+            return 'Quantidade maior que o saldo disponível';
+        }
+
+        if ($this->itemSaidaTemp->addItem($saida, $palletItem, $posicao, $quantidade)) {
             echo "sucesso";
         } else {
             echo "falha";

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\helpers\Gerais;
+use Exception;
 
 class EntradaRepository
 {
@@ -57,41 +58,39 @@ class EntradaRepository
     }
 
     //Realiza o emprenho do pallet
-    public function empenhaPallet($pallet)
+    public function empenhaPallet($itemSaida)
     {
+        $pallet = $this->retornaPallet($itemSaida->PALLET_SA1);
+
+        if (($itemSaida->QTD_SA1 + $pallet->EV_PAL) > $pallet->SALDO_PAL) {
+            throw new \Exception('Não foi possível empenhar, ev_pal ficaria maior que saldo');
+        }
+
         return \DB::table('cadpal')
-                ->where('numero_pal', $pallet->NUMERO_PAL)
-                ->update(array('EV_PAL' => $pallet->SALDO_PAL,
-                               'EL_PAL' => $pallet->PESOL_PAL,
-                               'EB_PAL' => $pallet->PESOB_PAL, ));
+                ->where('numero_pal', $itemSaida->PALLET_SA1)
+                ->update([
+                    'EV_PAL' => $itemSaida->QTD_SA1 + $pallet->EV_PAL,
+                    'EL_PAL' => $itemSaida->PESOLIQ_SA1 + $pallet->EL_PAL,
+                    'EB_PAL' => $itemSaida->PESO_SA1 + $pallet->EB_PAL 
+                ]);
     }
 
-    //Realiza o desemprenho do pallet
-    public function desempenhaPallet($pallet)
+    //Realiza o desemprenho do pallet por item da saida
+    public function desempenhaPalletPorItemSaida($itemSaida)
     {
+        $pallet = $this->retornaPallet($itemSaida->PALLET_SA1);
+
+        if (($pallet->EV_PAL - $itemSaida->QTD_SA1) < 0) {
+            throw new \Exception('Não foi possível desempenhar, ev_pal ficaria negativo');
+        }
 
         //Realiza o emprenho
         return \DB::table('cadpal')
-                ->where('numero_pal', $pallet->NUMERO_PAL)
-                ->update(array('EV_PAL' => 0,
-                               'EL_PAL' => 0,
-                               'EB_PAL' => 0 ));
+                ->where('numero_pal', $itemSaida->PALLET_SA1)
+                ->update(array('EV_PAL' => $pallet->EV_PAL - $itemSaida->QTD_SA1,
+                               'EL_PAL' => $pallet->EL_PAL - $itemSaida->PESOLIQ_SA1,
+                               'EB_PAL' => $pallet->EB_PAL - $itemSaida->PESO_SA1 ));
     }
-
-    //Realiza o desemprenho do pallet por numero
-    public function desempenhaPalletNum($numero_pal)
-    {
-
-        //Realiza o emprenho
-        return \DB::table('cadpal')
-                ->where('numero_pal', $numero_pal)
-                ->update(array('EV_PAL' => 0,
-                               'EL_PAL' => 0,
-                               'EB_PAL' => 0 ));
-    }
-
-
-
 
     //Retorna os totais de pallets
     public function getTotais()

@@ -9,14 +9,14 @@ class ItemSaidaTempRepository
 
 
     //Cria uma saída a partir dos dados do formulário
-    public function addItem($saida, $pallet, $posicao)
+    public function addItem($saida, $pallet, $posicao, $quantidade)
     {
         $ItemSaida = new ItemSaidaTemp;
         $ItemSaida->NUMERO_SA1 = $saida;
         $ItemSaida->PALLET_SA1 = $pallet->NUMERO_PAL;
-        $ItemSaida->QTD_SA1 = $pallet->SALDO_PAL;
-        $ItemSaida->PESOLIQ_SA1 = $pallet->PESOL_PAL;
-        $ItemSaida->PESO_SA1 = $pallet->PESOB_PAL;
+        $ItemSaida->QTD_SA1 = $quantidade; //$pallet->SALDO_PAL;
+        $ItemSaida->PESOLIQ_SA1 = ($pallet->PESOL_PAL / $pallet->QTD_PAL) * $quantidade; //$pallet->PESOL_PAL
+        $ItemSaida->PESO_SA1 = ($pallet->PESOB_PAL / $pallet->QTD_PAL) * $quantidade; //$pallet->PESOB_PAL;
         $ItemSaida->POSICAO_SA1 = $posicao;
         
         return $ItemSaida->save();
@@ -67,4 +67,18 @@ class ItemSaidaTempRepository
                     ->first();
     }
 
+    public function getByPallet($pallet)
+    {
+        return \DB::table('cadsa1_temp')
+                    ->where('PALLET_SA1', $pallet)
+                    ->first();
+    }
+
+    public function getPalletNaSaida($pallet, $saida)
+    {
+        return \DB::table('cadsa1_temp')
+                    ->where('PALLET_SA1', $pallet)
+                    ->where('NUMERO_SA1', $saida)
+                    ->first();
+    }
 }

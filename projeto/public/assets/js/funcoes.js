@@ -19,7 +19,6 @@ function addPallet(saida, pallet) {
         .val();
 
     quantidade = $("#quantidade_" + pallet).val();
-    debugger;
 
     url =
         urlBase +
@@ -49,11 +48,15 @@ function addPallet(saida, pallet) {
                     url: url_status,
                     success: function (result) {
                         $("#status-saida").html(result);
+                        $("#quantidade_" + pallet).prop("readonly", true);
                     },
                 });
             } else {
                 //Só mostra a mensagem em caso de erro
                 alert(result);
+                $("#td_add_" + pallet).html(
+                    `<td id="td_add_${pallet}" data-th="Adicionar"><button onClick="addPallet('${saida}', '${pallet}')">Adiciona</button></td>`
+                );
             }
         },
     });

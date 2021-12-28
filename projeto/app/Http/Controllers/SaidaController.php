@@ -217,7 +217,7 @@ class SaidaController extends Controller
 
         //Desempenha os itens de entrada
         foreach ($itensSaida as $itemSaida) {
-            $this->entrada->desempenhaPalletNum($itemSaida->PALLET_SA1);
+            $this->entrada->desempenhaPalletPorItemSaida($itemSaida);
         }
 
         //Remove todos os itens da saida

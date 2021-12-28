@@ -15,19 +15,11 @@ class ItemSaidaRepository
         foreach ($itens as $item) {
             $itemTemp = (array) $item;
             $itemTemp['NUMERO_SA1'] = $codSaida;
-            $itensArray[] = $itemTemp;
 
-            $pallet = $entrada->retornaPallet($item->PALLET_SA1);
+            \DB::table('cadsa1')->insert($itemTemp);
 
-            if ($pallet->EV_PAL == $pallet->SALDO_PAL) {
-                throw new \Exception("Pallet {$pallet->NUMERO_PAL} já está empenhado", 1);
-            }
-
-            $entrada->empenhaPallet($pallet);
+            $entrada->empenhaPallet($item);
         }
-
-        return \DB::table('cadsa1')->insert($itensArray);
-
     }
 
     //Cria uma saída a partir dos dados do formulário
