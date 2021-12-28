@@ -30,7 +30,7 @@
     	@section('js')
     		<script type="text/javascript" src="{{ URL::asset('assets/js/vendor/jquery-2.1.0.min.js') }}"></script>
     		<script type="text/javascript" src="{{ URL::asset('assets/js/vendor/bootstrap.min.js') }}"></script>
-            <script type="text/javascript" src="{{ URL::asset('assets/js/funcoes.js') }}"></script>
+            <script type="text/javascript" src="{{ URL::asset('assets/js/funcoes.js?versao=1') }}"></script>
 
     	@show
 

@@ -64,14 +64,14 @@
 				?>  
 
 			  
-			<tr style="background-color: {{ $empenhado ? '#d6bebe' : ''}}" id="tr_{{ $pallet->numero_pal }}">
+			<tr style="background-color: {{ $empenhado || $pallet->ev_pal > 0 ? '#d6bebe' : ''}}" id="tr_{{ $pallet->numero_pal }}">
 				<td data-th="N Pallet">{{ formataPallet($pallet->numero_pal) }}</td>
 				<td data-th="Lote Clientet">{{ $pallet->REFE_EN1 }}</td>
 			    <td data-th="Produto">({{ $pallet->codigo_pro }}) {{ $pallet->descri_pro }}</td>
 			    <td data-th="Saldo">{{ formataNumero($pallet->saldo_pal - $pallet->ev_pal) }}</td>
 			    <td data-th="Data Ent.">{{ mysqlToBr($pallet->dta_ent) }}</td>
 				<td data-th="Vencto">{{ mysqlToBr($vencto) }}</td>
-				<td data-th="Status">{{ $empenhado ?formataNumero($pallet->ev_pal).'-empenhado' : 'disponível' }}</td>
+				<td data-th="Status">{{ $empenhado || $pallet->ev_pal > 0 ? formataNumero($pallet->ev_pal).'-empenhado' : 'disponível' }}</td>
 			    <td data-th="Obs">{{ empty($pallet->obs1_pal) ? '-' : $pallet->obs1_pal }}</td>
 				<td data-th="Quantidade">
 					@if (!$empenhado)
