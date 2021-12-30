@@ -15,8 +15,8 @@ class ItemSaidaTempRepository
         $ItemSaida->NUMERO_SA1 = $saida;
         $ItemSaida->PALLET_SA1 = $pallet->NUMERO_PAL;
         $ItemSaida->QTD_SA1 = $quantidade; //$pallet->SALDO_PAL;
-        $ItemSaida->PESOLIQ_SA1 = ($pallet->PESOL_PAL / $pallet->QTD_PAL) * $quantidade; //$pallet->PESOL_PAL
-        $ItemSaida->PESO_SA1 = ($pallet->PESOB_PAL / $pallet->QTD_PAL) * $quantidade; //$pallet->PESOB_PAL;
+        $ItemSaida->PESOLIQ_SA1 = ($pallet->PL_PAL / $pallet->QTD_PAL) * $quantidade; //$pallet->PESOL_PAL
+        $ItemSaida->PESO_SA1 = ($pallet->PB_PAL / $pallet->QTD_PAL) * $quantidade; //$pallet->PESOB_PAL;
         $ItemSaida->POSICAO_SA1 = $posicao;
         
         return $ItemSaida->save();
