@@ -66,7 +66,7 @@
 					<td data-th="NFe Ent." class="teste">{{ $pallet->nfe_ent }}</td>
 					<td data-th="Lote Cliente">{{ $pallet->REFE_EN1 }}</td>
 			    <td data-th="Produto">({{ $pallet->codigo_pro }}) {{ $pallet->descri_pro }}</td>
-			    <td data-th="Saldo">{{ formataNumero($pallet->saldo_pal - $pallet->ev_pal) }}</td>
+			    <td data-th="Saldo">{{ formataNumero($pallet->saldo_pal) }}</td>
 			    <td data-th="Peso">{{ formataNumero($pallet->pesob_pal) }}</td>
 			    <td data-th="Data Entrada.">{{ mysqlToBr($pallet->dta_ent) }}</td>
 					<td data-th="vencto">{{ mysqlToBr($vencto) }}</td>

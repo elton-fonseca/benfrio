@@ -54,7 +54,7 @@
 					<td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ $pallet->camara_pal }}</td>
 					<td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ $pallet->codigo_pro }}</td>
 			    <td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ $pallet->descri_pro }}</td>
-			    <td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ formataNumero($pallet->saldo_pal - $pallet->ev_pal) }}</td>
+			    <td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ formataNumero($pallet->saldo_pal) }}</td>
 					<td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ mysqlToBr($pallet->dta_ent) }}</td>
 					<td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ mysqlToBr($vencto) }}</td>
 					<td style="background-color: {{ $empenhado ? '#d6bebe' : ''}}">{{ $pallet->REFE_EN1 }}</td>
