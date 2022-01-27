@@ -20,7 +20,7 @@
 					<td>{{ $saida->REFE_EN1 }}</td>
 			    	<td>{{ $saida->PALLET_SA1 }}</td>
 			    	<td>{{ $saida->DESCRI_PRO }}</td>
-					<td>{{ $saida->QTD_SA1 }}</td>
+					<td>{{ formataNumero($saida->QTD_SA1) }}</td>
 					
 			</tr>	
 						

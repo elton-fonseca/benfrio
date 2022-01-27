@@ -75,7 +75,7 @@
 			    <td data-th="Obs">{{ empty($pallet->obs1_pal) ? '-' : $pallet->obs1_pal }}</td>
 				<td data-th="Quantidade">
 					@if (!$empenhado)
-						<input type="number" id="quantidade_{{ $pallet->numero_pal }}" value="{{ intval($pallet->saldo_pal) }}" max="{{ intval($pallet->saldo_pal) }}" min="1" >
+						<input type="text" id="quantidade_{{ $pallet->numero_pal }}" value="{{ $pallet->saldo_pal }}">
 					@endif
 				</td>
 			    <td id="td_posicao_{{ $pallet->numero_pal }}" data-th="posição">
@@ -108,7 +108,7 @@
 	<div class="rodapeStatus rodape">
 		<div class="status-saida" id="status-saida">
 			<span><strong>Nº pallets: </strong>{{ isset($totalItens->qtd_pallets) ? $totalItens->qtd_pallets : 0 }}</span>
-	        <span><strong>Volume: </strong>{{ isset($totalItens->volume) ? (int) $totalItens->volume : 0 }}</span><br/>
+	        <span><strong>Volume: </strong>{{ isset($totalItens->volume) ? formataNumero($totalItens->volume) : 0 }}</span><br/>
 	        <span><strong>Peso liq.: </strong>{{ isset($totalItens->t_liq) ? $totalItens->t_liq : 0 }}</span>
 	        <span><strong>Peso Bru. Apro.: </strong>{{ isset($totalItens->t_liq) ? $totalItens->t_liq + ($totalItens->qtd_pallets*100) : 0 }}</span>
 		</div>

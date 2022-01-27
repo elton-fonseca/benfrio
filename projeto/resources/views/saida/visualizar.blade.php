@@ -12,7 +12,7 @@
         <p><strong>Hora previsão de retirada: </strong>{{ (strlen($saida->CHEGADA_SAI) >= 4) ? formataHora($saida->CHEGADA_SAI) : 0 }}</p>
         <p><strong>Placa Caminhão: </strong>{{ isset($saida->PLACA_SAI) ? $saida->PLACA_SAI : ' Não cadastrada' }}</p>
         <p><strong>Total de pallets: </strong>{{ isset($totalItens->qtd_pallets) ? $totalItens->qtd_pallets : 0 }}</p>
-        <p><strong>Total de Volume: </strong>{{ isset($totalItens->volume) ? (int) $totalItens->volume : 0 }}</p>
+        <p><strong>Total de Volume: </strong>{{ isset($totalItens->volume) ? formataNumero($totalItens->volume) : 0 }}</p>
         <p><strong>Peso liquido total: </strong>{{ isset($totalItens->t_liq) ? formataNumero($totalItens->t_liq) : 0 }}</p>
         <p><strong>Peso Bruto Aproximado: </strong>{{ isset($totalItens->t_liq) ? formataNumero($totalItens->t_liq + ($totalItens->qtd_pallets*100)) : 0 }}</p>
         <p><strong>Observação: </strong>{{ $saida->OBS_SAI }}</p>
@@ -37,7 +37,7 @@
 					<td data-th="N Pallet">{{ isset($item->PALLET_SA1) ? formataPallet($item->PALLET_SA1) : 0 }}</td>
 					<td data-th="Lote Cliente">{{ isset($item->REFE_EN1) ? $item->REFE_EN1 : 0 }}</td>
 			    <td data-th="Produto">({{ $item->CODIGO_PRO }}) {{ isset($item->DESCRI_PRO) ? $item->DESCRI_PRO : 0 }}</td>
-			    <td data-th="Volume">{{ isset($item->QTD_SA1) ? (int) $item->QTD_SA1 : 0 }}</td>
+			    <td data-th="Volume">{{ isset($item->QTD_SA1) ? formataNumero($item->QTD_SA1) : 0 }}</td>
 			    <td data-th="Peso L.">{{ isset($item->PESOLIQ_SA1) ? formataNumero($item->PESOLIQ_SA1) : 0 }}</td>
 			    <td data-th="Peso B.">{{ isset($item->PESO_SA1) ? formataNumero($item->PESO_SA1) : 0 }}</td>
 				<td data-th="Posição">{{ posicao($item->POSICAO_SA1) }}</td>

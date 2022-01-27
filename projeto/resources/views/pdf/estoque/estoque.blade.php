@@ -36,7 +36,7 @@
 			<tr style="background-color: #fff; font-weight: bold;">
 					<td><h6 style="font-weight: bold; font-size: 10px;">total: {{ $totalPallets }}</h6></td>
 					<td></td>
-			    <td><h6 style="font-weight: bold; font-size: 10px;">{{ intval($totalVolume) }}</h6></td>
+			    <td><h6 style="font-weight: bold; font-size: 10px;">{{ formataNumero($totalVolume) }}</h6></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -49,7 +49,7 @@
 			  <tr>
 					<td style="width: 80px; background-color: {{ $empenhado ? '#ababab' : '#FFF'}}">{{ formataPallet($pallet->numero_pal) }}</td>
 			    	<td style="width: 360px; background-color: {{ $empenhado ? '#ababab' : '#FFF'}}">{{ $pallet->descri_pro }}</td>
-			    	<td style="width: 40px; background-color: {{ $empenhado ? '#ababab' : '#FFF'}}">{{ intval($pallet->saldo_pal) }}</td>
+			    	<td style="width: 40px; background-color: {{ $empenhado ? '#ababab' : '#FFF'}}">{{ formataNumero($pallet->saldo_pal) }}</td>
 					<td style="width: 60px; background-color: {{ $empenhado ? '#ababab' : '#FFF'}}">{{ mysqlToBr($pallet->dta_ent) }}</td>
 					<td style="width: 60px; background-color: {{ $empenhado ? '#ababab' : '#FFF'}}">{{ mysqlToBr($vencto) }}</td>
 			    	<td style="width: 160px; background-color: {{ $empenhado ? '#ababab' : '#FFF'}}">{{ $pallet->obs1_pal }}</td>

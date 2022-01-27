@@ -84,7 +84,7 @@
 	<div class="rodapeStatus rodape">
 		<div class="status-saida" id="status-saida">
 			<span><strong>Nº pallets: </strong>{{ isset($totalItens->qtd_pallets) ? $totalItens->qtd_pallets : 0 }}</span>
-	        <span><strong>Volume: </strong>{{ isset($totalItens->volume) ? (int) $totalItens->volume : 0 }}</span><br/>
+	        <span><strong>Volume: </strong>{{ isset($totalItens->volume) ? formataNumero($totalItens->volume) : 0 }}</span><br/>
 	        <span><strong>Peso liq.: </strong>{{ isset($totalItens->t_liq) ? $totalItens->t_liq : 0 }}</span>
 	        <span><strong>Peso Bru. Apro.: </strong>{{ isset($totalItens->t_liq) ? $totalItens->t_liq + ($totalItens->qtd_pallets*100) : 0 }}</span>
 		</div>
