@@ -27,7 +27,7 @@ class SaidaRequest extends FormRequest
             'placa' => ['nullable', 'size:7', 'alpha_num'],
             'datas' => ["date_format:d/m/Y", "after:yesterday"],
             'chegada' => ['nullable', 'date_format:H:i'],
-            'obs' => ['nullable', 'max:70']
+            'obs' => ['nullable', 'max:255']
         ];
     }
 }
