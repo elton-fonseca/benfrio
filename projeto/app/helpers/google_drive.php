@@ -1,5 +1,5 @@
 <?php
-
+/* 
 function getFolderPath($name, $base='/')
 {
     $folders = collect(\Storage::cloud()->listContents($base, false));
@@ -31,3 +31,4 @@ function getFileFromPath($seachID, $extension, $path='/', $searchIni, $searchQtd
               ->header('ContentType', $file['mimetype'])
               ->header('Content-Disposition', "attachment; filename='" . $file['filename'] . "." . $extension . "'");
 }
+ */
