@@ -79,7 +79,6 @@ use Symfony\Component\Finder\Finder;
   //Formata hora para formato HH:MM
   function gerarPDF($html, $horientacao="retrato")
   {
-      $html = utf8_encode($html);
       $mpdf = new \Mpdf\Mpdf();
       $mpdf->WriteHTML($html);
       $mpdf->Output("relatorio_". date('m-d-Y_h-i') .".pdf", 'D');

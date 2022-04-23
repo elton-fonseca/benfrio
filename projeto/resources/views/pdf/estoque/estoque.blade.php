@@ -1,4 +1,3 @@
-﻿
 @extends('pdf.estoque.base')
 
 @section('body')
