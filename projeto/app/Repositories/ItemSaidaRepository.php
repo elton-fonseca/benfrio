@@ -16,9 +16,9 @@ class ItemSaidaRepository
             $itemTemp = (array) $item;
             $itemTemp['NUMERO_SA1'] = $codSaida;
 
-            \DB::table('cadsa1')->insert($itemTemp);
-
             $entrada->empenhaPallet($item);
+
+            \DB::table('cadsa1')->insert($itemTemp);
         }
     }
 

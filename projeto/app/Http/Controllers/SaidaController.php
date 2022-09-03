@@ -156,21 +156,28 @@ class SaidaController extends Controller
     //Exibe página de finalização do pedido
     public function emailSaida($saida)
     {
+        \DB::beginTransaction();
+
         try {
-            \DB::beginTransaction();
-            
             //Recebe os saidas do repositorio de saidas
-            $saidaTemp= $this->saidaTemp->getSaida($saida);
+            $saidaTemp = $this->saidaTemp->getSaida($saida);
             $novasaida = $this->saida->criarSaida($saidaTemp);
+
+            $this->novaSaida = $novasaida;
 
             //Recebe os itens da saida
             $itensTemp = $this->itemSaidaTemp->getLimpoBySaida($saidaTemp->NUMERO_SAI);
-            $itensNovo = $this->itemSaida->addItens($itensTemp, $novasaida->NUMERO_SAI);
+
+            if ($itensTemp->isEmpty()) {
+                throw new \Exception("Não há itens para a saída");
+            }
+
+            $this->itemSaida->addItens($itensTemp, $novasaida->NUMERO_SAI);
 
             $dados['totalItens'] = $this->itemSaida->getTotais($novasaida->NUMERO_SAI);
             $dados['saida'] = $novasaida;
             $dados['itens'] = $this->itemSaida->getBySaida($novasaida->NUMERO_SAI);
-            
+
             $usuario = $this->usuario->getCliente();
 
             //Envia email
@@ -183,10 +190,14 @@ class SaidaController extends Controller
             \DB::commit();
         } catch (\Throwable $e) {
             \DB::rollback();
-            
+
+            if ($this->novaSaida) {
+                $this->saida->deletaSaida($this->novaSaida->NUMERO_SAI);
+            }
+
             return redirect()->route("saidaFinaliza", $saida)
-                    ->with('mensagem', "Erro ao criar pedido! (".$e->getMessage().")")
-                    ->withInput();
+                ->with('mensagem', "Erro ao criar pedido! (" . $e->getMessage() . ")")
+                ->withInput();
         }
 
         return \Redirect::to("saida")->with('mensagem', "Pedido Criado com sucesso");

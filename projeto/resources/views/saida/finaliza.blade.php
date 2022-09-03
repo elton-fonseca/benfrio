@@ -48,8 +48,22 @@
 			</tbody>  
 		</table>
 		<div style="margin-top: 10px; float: left;">
-			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-primary">Enviar</a>
+			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-primary" id="enviar1">Enviar</a>
 		</div>
+
+		<script>
+			let clicouEnviar = false;
+
+			document.getElementById('enviar1').addEventListener('click', (e) => {
+				e.target.innerHTML = 'Aguarde...';
+
+				if (clicouEnviar) {
+					e.preventDefault();
+				} else {
+					clicouEnviar = true;
+				}
+			});
+		</script>
 		
 		<div class="espaco"></div>
 
@@ -57,8 +71,20 @@
 
 	<div class="rodape">
 		<div class="btn-direita">
-			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-default">Enviar</a>
+			<a href='{{ URL::to("saida/finalizaemail/{$saida->NUMERO_SAI}")  }}' class="btn btn-default" id="enviar2">Enviar</a>
 		</div>
+
+		<script>
+			document.getElementById('enviar2').addEventListener('click', (e) => {
+				e.target.innerHTML = 'Aguarde...';
+
+				if (clicouEnviar) {
+					e.preventDefault();
+				} else {
+					clicouEnviar = true;
+				}
+			});
+		</script>
 		<div class="btn-direita"><a href='{{ URL::to("saida/exibepallets/{$saida->NUMERO_SAI}")  }}' class="btn btn-default">Inserir Mais pallets</a></div>
 
 	</div>

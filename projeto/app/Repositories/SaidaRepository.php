@@ -123,6 +123,14 @@ class SaidaRepository
         return $teste;
     }
 
+    //remove saida
+    public function deletaSaida($saida)
+    {
+        return \DB::table('cadsai')
+        ->where('NUMERO_SAI', $saida)
+            ->delete();
+    }
+
     public function listarSaidasPendentes()
     {
         $dados = \DB::table('cadsai')
