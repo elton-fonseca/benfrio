@@ -27,6 +27,8 @@ class ItemSaidaController extends Controller
             return 'Esse item já está adicionado a saída';
         }
 
+        $quantidade = str_replace(',', '.', $quantidade);
+
         if ($quantidade > ($palletItem->SALDO_PAL - $palletItem->EV_PAL)) {
             return 'Quantidade maior que o saldo disponível';
         }
