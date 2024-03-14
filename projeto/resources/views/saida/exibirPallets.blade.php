@@ -60,7 +60,7 @@
 				     	$vencto = date('Y-m-d', strtotime("+15 days",strtotime($vencto)));
 					}
 					$empenhado = $pallet->ev_pal == $pallet->saldo_pal || $itensExistentes->where('PALLET_SA1', $pallet->numero_pal)->isNotEmpty();
-					
+					$saldoReal = $pallet->saldo_pal - $pallet->ev_pal;
 				?>  
 
 			  
@@ -75,7 +75,7 @@
 			    <td data-th="Obs">{{ empty($pallet->obs1_pal) ? '-' : $pallet->obs1_pal }}</td>
 				<td data-th="Quantidade">
 					@if (!$empenhado)
-						<input type="text" id="quantidade_{{ $pallet->numero_pal }}" value="{{ $pallet->saldo_pal }}">
+						<input type="text" id="quantidade_{{ $pallet->numero_pal }}" value="{{ $saldoReal }}">
 					@endif
 				</td>
 			    <td id="td_posicao_{{ $pallet->numero_pal }}" data-th="posição">
