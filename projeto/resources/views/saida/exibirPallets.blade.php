@@ -75,7 +75,7 @@
 			    <td data-th="Obs">{{ empty($pallet->obs1_pal) ? '-' : $pallet->obs1_pal }}</td>
 				<td data-th="Quantidade">
 					@if (!$empenhado)
-						<input type="text" id="quantidade_{{ $pallet->numero_pal }}" value="{{ number_format($saldoReal, 2, ",") }}">
+						<input type="text" id="quantidade_{{ $pallet->numero_pal }}" value="{{ number_format($saldoReal, 2, ",", '') }}">
 					@endif
 				</td>
 			    <td id="td_posicao_{{ $pallet->numero_pal }}" data-th="posição">
